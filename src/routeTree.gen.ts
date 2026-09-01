@@ -11,7 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SlugRouteImport } from './routes/$slug'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CraneRentalRouteImport } from './routes/crane-rental'
+import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as VehicleRecoveryRouteImport } from './routes/vehicle-recovery'
 
@@ -25,9 +28,24 @@ const SlugRoute = SlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CraneRentalRoute = CraneRentalRouteImport.update({
   id: '/crane-rental',
   path: '/crane-rental',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LocationsRoute = LocationsRouteImport.update({
+  id: '/locations',
+  path: '/locations',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -44,14 +62,20 @@ const VehicleRecoveryRoute = VehicleRecoveryRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$slug': typeof SlugRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/crane-rental': typeof CraneRentalRoute
+  '/locations': typeof LocationsRoute
   '/services': typeof ServicesRoute
   '/vehicle-recovery': typeof VehicleRecoveryRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$slug': typeof SlugRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/crane-rental': typeof CraneRentalRoute
+  '/locations': typeof LocationsRoute
   '/services': typeof ServicesRoute
   '/vehicle-recovery': typeof VehicleRecoveryRoute
 }
@@ -59,21 +83,42 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$slug': typeof SlugRoute
+  '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
   '/crane-rental': typeof CraneRentalRoute
+  '/locations': typeof LocationsRoute
   '/services': typeof ServicesRoute
   '/vehicle-recovery': typeof VehicleRecoveryRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/$slug' | '/crane-rental' | '/services' | '/vehicle-recovery'
+    | '/'
+    | '/$slug'
+    | '/about'
+    | '/contact'
+    | '/crane-rental'
+    | '/locations'
+    | '/services'
+    | '/vehicle-recovery'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$slug' | '/crane-rental' | '/services' | '/vehicle-recovery'
+  to:
+    | '/'
+    | '/$slug'
+    | '/about'
+    | '/contact'
+    | '/crane-rental'
+    | '/locations'
+    | '/services'
+    | '/vehicle-recovery'
   id:
     | '__root__'
     | '/'
     | '/$slug'
+    | '/about'
+    | '/contact'
     | '/crane-rental'
+    | '/locations'
     | '/services'
     | '/vehicle-recovery'
   fileRoutesById: FileRoutesById
@@ -81,7 +126,10 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SlugRoute: typeof SlugRoute
+  AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
   CraneRentalRoute: typeof CraneRentalRoute
+  LocationsRoute: typeof LocationsRoute
   ServicesRoute: typeof ServicesRoute
   VehicleRecoveryRoute: typeof VehicleRecoveryRoute
 }
@@ -102,11 +150,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/crane-rental': {
       id: '/crane-rental'
       path: '/crane-rental'
       fullPath: '/crane-rental'
       preLoaderRoute: typeof CraneRentalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/locations': {
+      id: '/locations'
+      path: '/locations'
+      fullPath: '/locations'
+      preLoaderRoute: typeof LocationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -129,7 +198,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SlugRoute: SlugRoute,
+  AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
   CraneRentalRoute: CraneRentalRoute,
+  LocationsRoute: LocationsRoute,
   ServicesRoute: ServicesRoute,
   VehicleRecoveryRoute: VehicleRecoveryRoute,
 }

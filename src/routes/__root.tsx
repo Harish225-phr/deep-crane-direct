@@ -11,6 +11,20 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { MobileCallBar } from "@/components/MobileCallBar";
+
+function AnimatedBackground() {
+  return (
+    <div className="pointer-events-none fixed inset-0 -z-50 overflow-hidden" aria-hidden>
+      <div className="bg-grid-pattern absolute inset-0 opacity-[0.04]" />
+      <div className="bg-glow bg-glow-1" />
+      <div className="bg-glow bg-glow-2" />
+      <div className="bg-glow bg-glow-3" />
+    </div>
+  );
+}
 
 function NotFoundComponent() {
   return (
@@ -77,14 +91,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Deep Crane Service | 24/7 Towing & Vehicle Recovery in Shimla" },
+      { name: "description", content: "Deep Crane Service provides 24/7 car towing, heavy vehicle recovery, roadside assistance and 10 ton Hydra crane rental in Shimla, Solan and nearby Himachal Pradesh. Call +91 98175 20650." },
+      { name: "author", content: "Deep Crane Service" },
+      { property: "og:title", content: "Deep Crane Service | 24/7 Towing & Vehicle Recovery in Shimla" },
+      { property: "og:description", content: "24/7 car towing, heavy vehicle recovery, roadside assistance and crane rental in Shimla, Solan and nearby Himachal Pradesh." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
@@ -119,8 +132,16 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <AnimatedBackground />
+      <div className="flex min-h-screen flex-col">
+        <Header />
+        <main className="flex-1">
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
+      <MobileCallBar />
     </QueryClientProvider>
   );
 }

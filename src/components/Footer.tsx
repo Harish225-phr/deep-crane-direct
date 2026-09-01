@@ -58,13 +58,10 @@ export function Footer() {
           <ul className="mt-4 space-y-2 text-sm">
             {PAGES.map((p) => (
               <li key={p.to}>
-                <Link
-                  to="/$slug"
-                  params={{ slug: p.to }}
-                  className="text-muted-foreground hover:text-foreground"
-                >
+                <Link to={p.to} className="text-muted-foreground hover:text-foreground">
                   {p.label}
                 </Link>
+
               </li>
             ))}
           </ul>

@@ -9,7 +9,6 @@ import {
   Clock,
   ConeIcon,
   Construction,
-  Crane,
   MapPin,
   MapPinned,
   MountainSnow,
@@ -32,7 +31,7 @@ import accidentTowing from "../assets/accident-vehicle-towing.jpg";
 import roadsideImg from "../assets/roadside-assistance.jpg";
 import suvShimla from "../assets/suv-towing-shimla.jpg";
 
-import { BUSINESS, EXTRA_AREAS, FULL_ADDRESS, LOCATIONS, SERVICE_LIST } from "@/lib/site";
+import { BUSINESS, EXTRA_AREAS, FULL_ADDRESS, LOCATIONS, SERVICES, SERVICE_LIST } from "@/lib/site";
 import { Reveal, Stagger, StaggerItem } from "@/components/Reveal";
 import { CountUp } from "@/components/CountUp";
 import { CallButton, Eyebrow, FaqList, Section, faqSchema } from "@/components/Ui";
@@ -123,54 +122,54 @@ export const Route = createFileRoute("/")({
 });
 
 const SERVICE_CARDS = [
-  { icon: Car, name: "Car Towing", text: SERVICE_LIST[0].short, to: "/car-towing-in-shimla" },
+  { icon: Car, name: "Car Towing", text: SERVICES['car-towing'].short, to: "car-towing-in-shimla" },
   {
     icon: Truck,
     name: "Heavy Vehicle Recovery",
     text: "Recovery services for trucks, buses and commercial vehicles on difficult mountain roads.",
-    to: "/heavy-vehicle-recovery-in-shimla",
+    to: "heavy-vehicle-recovery-in-shimla",
   },
   {
     icon: Wrench,
     name: "Roadside Assistance",
     text: "Emergency roadside support for vehicles that become stranded during travel.",
-    to: "/roadside-assistance-in-shimla",
+    to: "roadside-assistance-in-shimla",
   },
   {
     icon: AlertTriangle,
     name: "Accident Vehicle Recovery",
     text: "Professional recovery of accident-damaged vehicles from roads, slopes, ditches and difficult locations.",
-    to: "/vehicle-recovery-in-shimla",
+    to: "vehicle-recovery-in-shimla",
   },
   {
     icon: Truck,
     name: "Truck Recovery",
     text: "Heavy-duty recovery solutions for commercial trucks and transport vehicles.",
-    to: "/truck-recovery-in-shimla",
+    to: "truck-recovery-in-shimla",
   },
   {
     icon: Bus,
     name: "Bus Recovery",
     text: "Professional recovery support for buses and large passenger vehicles.",
-    to: "/bus-recovery-in-shimla",
+    to: "bus-recovery-in-shimla",
   },
   {
     icon: ConeIcon,
     name: "Flatbed Towing",
     text: "Secure vehicle transportation using suitable towing equipment.",
-    to: "/car-towing-in-shimla",
+    to: "car-towing-in-shimla",
   },
   {
     icon: MountainSnow,
     name: "Mountain Vehicle Recovery",
     text: "Specialised recovery support for vehicles stranded on steep roads, sharp curves and mountain routes.",
-    to: "/vehicle-recovery-in-kufri",
+    to: "vehicle-recovery-in-kufri",
   },
   {
-    icon: Crane,
+    icon: Construction,
     name: "Hydra Crane Rental",
     text: "10-ton Hydra crane services for construction, lifting, machinery shifting and industrial work.",
-    to: "/crane-rental-in-shimla",
+    to: "crane-rental-in-shimla",
   },
 ] as const;
 
@@ -204,7 +203,7 @@ const WHY = [
   { icon: Users, t: "Experienced Recovery Team", d: "Trained operators for high-risk lifts." },
   { icon: MountainSnow, t: "Mountain Terrain Expertise", d: "Gradients, hairpins and snow routes." },
   { icon: Truck, t: "Heavy Vehicle Capability", d: "Trucks, buses and loaded commercials." },
-  { icon: Crane, t: "Professional Equipment", d: "Hydra crane and recovery vehicles." },
+  { icon: Construction, t: "Professional Equipment", d: "Hydra crane and recovery vehicles." },
   { icon: PhoneCall, t: "Fast Response", d: "Base at Kachi Ghati on the NH-5 entry." },
   { icon: Star, t: "Transparent & Affordable", d: "Clear pricing discussed before dispatch." },
   { icon: MapPinned, t: "Local Shimla Knowledge", d: "We know the shortcuts and the barriers." },
@@ -323,7 +322,8 @@ function Home() {
           {SERVICE_CARDS.map((s) => (
             <StaggerItem key={s.name}>
               <Link
-                to={s.to}
+                to="/$slug"
+                params={{ slug: s.to }}
                 className="group flex h-full flex-col rounded-sm border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:border-primary/70 hover:shadow-hard"
               >
                 <s.icon className="h-8 w-8 text-primary" />
@@ -525,7 +525,8 @@ function Home() {
                     {l.services.map((s) => (
                       <li key={s}>
                         <Link
-                          to={`/${s}-in-${l.slug}`}
+                          to="/$slug"
+                          params={{ slug: `${s}-in-${l.slug}` }}
                           className="inline-block rounded-sm border border-border px-2 py-1 text-[11px] tracking-wide text-muted-foreground uppercase hover:border-primary hover:text-primary"
                         >
                           {s.replace(/-/g, " ")}

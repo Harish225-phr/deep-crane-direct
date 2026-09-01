@@ -13,23 +13,23 @@ const PAGES = [
 ] as const;
 
 const SERVICE_LINKS = [
-  { to: "/car-towing-in-shimla", label: "Car Towing in Shimla" },
-  { to: "/vehicle-recovery-in-shimla", label: "Vehicle Recovery in Shimla" },
-  { to: "/heavy-vehicle-recovery-in-shimla", label: "Heavy Vehicle Recovery in Shimla" },
-  { to: "/truck-recovery-in-shimla", label: "Truck Recovery in Shimla" },
-  { to: "/roadside-assistance-in-shimla", label: "Roadside Assistance in Shimla" },
-  { to: "/crane-rental-in-shimla", label: "Hydra Crane Rental in Shimla" },
+  { to: "car-towing-in-shimla", label: "Car Towing in Shimla" },
+  { to: "vehicle-recovery-in-shimla", label: "Vehicle Recovery in Shimla" },
+  { to: "heavy-vehicle-recovery-in-shimla", label: "Heavy Vehicle Recovery in Shimla" },
+  { to: "truck-recovery-in-shimla", label: "Truck Recovery in Shimla" },
+  { to: "roadside-assistance-in-shimla", label: "Roadside Assistance in Shimla" },
+  { to: "crane-rental-in-shimla", label: "Hydra Crane Rental in Shimla" },
 ] as const;
 
 const LOCATION_LINKS = [
-  { to: "/car-towing-in-shimla", label: "Shimla" },
-  { to: "/car-towing-in-solan", label: "Solan" },
-  { to: "/car-towing-in-kufri", label: "Kufri" },
-  { to: "/car-towing-in-mashobra", label: "Mashobra" },
-  { to: "/car-towing-in-shoghi", label: "Shoghi" },
-  { to: "/car-towing-in-kandaghat", label: "Kandaghat" },
-  { to: "/car-towing-in-kumarhatti", label: "Kumarhatti" },
-  { to: "/car-towing-in-dharampur", label: "Dharampur" },
+  { to: "car-towing-in-shimla", label: "Shimla" },
+  { to: "car-towing-in-solan", label: "Solan" },
+  { to: "car-towing-in-kufri", label: "Kufri" },
+  { to: "car-towing-in-mashobra", label: "Mashobra" },
+  { to: "car-towing-in-shoghi", label: "Shoghi" },
+  { to: "car-towing-in-kandaghat", label: "Kandaghat" },
+  { to: "car-towing-in-kumarhatti", label: "Kumarhatti" },
+  { to: "car-towing-in-dharampur", label: "Dharampur" },
 ] as const;
 
 export function Footer() {
@@ -58,7 +58,11 @@ export function Footer() {
           <ul className="mt-4 space-y-2 text-sm">
             {PAGES.map((p) => (
               <li key={p.to}>
-                <Link to={p.to} className="text-muted-foreground hover:text-foreground">
+                <Link
+                  to="/$slug"
+                  params={{ slug: p.to }}
+                  className="text-muted-foreground hover:text-foreground"
+                >
                   {p.label}
                 </Link>
               </li>
@@ -73,7 +77,11 @@ export function Footer() {
           <ul className="mt-4 space-y-2 text-sm">
             {SERVICE_LINKS.map((p) => (
               <li key={p.to}>
-                <Link to={p.to} className="text-muted-foreground hover:text-foreground">
+                <Link
+                  to="/$slug"
+                  params={{ slug: p.to }}
+                  className="text-muted-foreground hover:text-foreground"
+                >
                   {p.label}
                 </Link>
               </li>
@@ -88,7 +96,11 @@ export function Footer() {
           <ul className="mt-4 grid grid-cols-2 gap-2 text-sm">
             {LOCATION_LINKS.map((p) => (
               <li key={p.to}>
-                <Link to={p.to} className="text-muted-foreground hover:text-foreground">
+                <Link
+                  to="/$slug"
+                  params={{ slug: p.to }}
+                  className="text-muted-foreground hover:text-foreground"
+                >
                   {p.label}
                 </Link>
               </li>
